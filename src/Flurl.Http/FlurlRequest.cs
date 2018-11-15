@@ -86,7 +86,7 @@ namespace Flurl.Http
         {
             get =>
                 (_client != null) ? _client :
-                (Url != null) ? FlurlHttp.GlobalSettings.FlurlClientFactory.Get(Url, CustomHttpClientFactory) :
+                (Url != null) ? FlurlHttp.GlobalSettings.FlurlClientFactory.Get(Url, CustomHttpClientFactory ?? FlurlHttp.GlobalSettings.HttpClientFactory) :
                 null;
             set
             {
@@ -266,6 +266,26 @@ namespace Flurl.Http
             if (asyncHandler != null)
                 return asyncHandler(call);
             return Task.FromResult(0);
+        }
+    }
+
+    /// <summary>
+    /// Fluent API provider for IFlurlRequest
+    /// </summary>
+    public static class IFlurlRequestExtensions
+    {
+        /// <summary>
+        /// Fluent api to setup custom http client factory
+        /// </summary>
+        /// <param name="request">IFlurlRequest</param>
+        /// <param name="httpClientFactory">IHttpClientFactory</param>
+        /// <returns></returns>
+        public static IFlurlRequest WithCustomHttpClientFactory(
+            this IFlurlRequest request,
+            IHttpClientFactory httpClientFactory)
+        {
+            request.CustomHttpClientFactory = httpClientFactory;
+            return request;
         }
     }
 }

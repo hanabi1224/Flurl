@@ -15,19 +15,6 @@
         }
 
         /// <inheritdoc />
-        protected override IFlurlClient Create(Url url, IHttpClientFactory httpClientFactory)
-        {
-            if (httpClientFactory == null)
-            {
-                return new FlurlClient(url);
-            }
-            else
-            {
-                return new FlurlClient(httpClientFactory.CreateHttpClient(httpClientFactory.CreateMessageHandler()))
-                {
-                    BaseUrl = url,
-                };
-            }
-        }
+        protected override IFlurlClient Create(Url url) => new FlurlClient(url);
     }
 }

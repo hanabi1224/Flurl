@@ -17,10 +17,12 @@ namespace Flurl.Http.Configuration
             if (url == null)
                 throw new ArgumentNullException(nameof(url));
 
+            // TODO: Disallow null value of httpClientFactory
+
             return _clients.AddOrUpdate(
                 GetCacheKey(url, httpClientFactory),
-                u => Create(u, httpClientFactory),
-                (u, client) => client.IsDisposed ? Create(u, httpClientFactory) : client);
+                u => CreateAndSetupHttpClientFactory(u, httpClientFactory),
+                (u, client) => client.IsDisposed ? CreateAndSetupHttpClientFactory(u, httpClientFactory) : client);
         }
 
         /// <summary>
@@ -37,19 +39,19 @@ namespace Flurl.Http.Configuration
         /// Creates a new FlurlClient
         /// </summary>
         /// <param name="url">The URL (not used)</param>
-        /// <param name="httpClientFactory">Custom http client factory, null as default</param>
         /// <returns></returns>
-        protected virtual IFlurlClient Create(Url url, IHttpClientFactory httpClientFactory)
+        protected virtual IFlurlClient Create(Url url) => new FlurlClient();
+
+        private IFlurlClient CreateAndSetupHttpClientFactory(Url url, IHttpClientFactory httpClientFactory)
         {
-            if (httpClientFactory == null)
+            var client = new FlurlClient(url);
+            // TODO: Disallow null value of httpClientFactory
+            if (httpClientFactory != null)
             {
-                return new FlurlClient();
+                client.Settings.HttpClientFactory = httpClientFactory;
             }
-            else
-            {
-                var httpClient = httpClientFactory.CreateHttpClient(httpClientFactory.CreateMessageHandler());
-                return new FlurlClient(httpClient);
-            }
+
+            return client;
         }
 
         /// <summary>
