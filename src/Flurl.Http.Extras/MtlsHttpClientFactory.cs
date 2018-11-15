@@ -60,7 +60,7 @@ namespace Flurl.Http
         /// <summary>
         /// Fluent API to specify client certificate for mTLS authentication
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="url">url</param>
         /// <param name="clientCertificate"></param>
         /// <returns></returns>
         public static IFlurlRequest WithMtlsClientCertificate(
@@ -73,7 +73,7 @@ namespace Flurl.Http
         /// <summary>
         /// Fluent API to specify client certificate for mTLS authentication
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="url">url</param>
         /// <param name="clientCertificate"></param>
         /// <returns></returns>
         public static IFlurlRequest WithMtlsClientCertificate(

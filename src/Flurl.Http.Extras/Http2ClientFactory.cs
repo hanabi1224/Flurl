@@ -38,7 +38,7 @@ namespace Flurl.Http
         /// <summary>
         /// Fluent API to enable http/2
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="url">url</param>
         /// <returns></returns>
         public static IFlurlRequest EnableHttp2(this Url url)
         {
@@ -48,7 +48,7 @@ namespace Flurl.Http
         /// <summary>
         /// Fluent API to enable http/2
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="url">url</param>
         /// <returns></returns>
         public static IFlurlRequest EnableHttp2(this string url)
         {
