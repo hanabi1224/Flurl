@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flurl.Http
 {
-    public class Http2MessageHandler : WinHttpHandler
+    internal class Http2MessageHandler : WinHttpHandler
     {
         private static readonly Version version20 = Version.Parse("2.0");
         protected override async Task<HttpResponseMessage> SendAsync(

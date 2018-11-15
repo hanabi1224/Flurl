@@ -6,14 +6,23 @@ using Flurl.Http.Configuration;
 
 namespace Flurl.Http
 {
+    /// <summary>
+    /// Provides mTLS authentication support
+    /// </summary>
     public class MtlsHttpClientFactory : DefaultHttpClientFactory
     {
         private readonly X509Certificate2 clientCertificate;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="clientCertificate">Cleint certificate for mTLS authentication</param>
         public MtlsHttpClientFactory(X509Certificate2 clientCertificate)
         {
             this.clientCertificate = clientCertificate ?? throw new ArgumentNullException(nameof(clientCertificate));
         }
 
+        /// <inheritdoc />
         public override HttpMessageHandler CreateMessageHandler()
         {
             var handler = new HttpClientHandler
@@ -29,8 +38,17 @@ namespace Flurl.Http
         }
     }
 
+    /// <summary>
+    /// Fluent API provider static class
+    /// </summary>
     public static class MtlsHttpClientFactoryExtensions
     {
+        /// <summary>
+        /// Fluent API to specify client certificate for mTLS authentication
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="clientCertificate"></param>
+        /// <returns></returns>
         public static IFlurlRequest WithMtlsClientCertificate(
             this IFlurlRequest request,
             X509Certificate2 clientCertificate)
