@@ -14,4 +14,13 @@ namespace Flurl.Http
             };
         }
     }
+
+    public static class Http2ClientFactoryExtensions
+    {
+        public static IFlurlRequest EnableHttp2(this IFlurlRequest request)
+        {
+            request.CustomHttpClientFactory = new Http2ClientFactory();
+            return request;
+        }
+    }
 }

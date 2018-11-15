@@ -28,4 +28,15 @@ namespace Flurl.Http
             return handler;
         }
     }
+
+    public static class MtlsHttpClientFactoryExtensions
+    {
+        public static IFlurlRequest WithMtlsClientCertificate(
+            this IFlurlRequest request,
+            X509Certificate2 clientCertificate)
+        {
+            request.CustomHttpClientFactory = new MtlsHttpClientFactory(clientCertificate);
+            return request;
+        }
+    }
 }

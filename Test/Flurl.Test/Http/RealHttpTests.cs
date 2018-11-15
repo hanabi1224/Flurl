@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Flurl.Http.Testing;
@@ -423,7 +424,19 @@ namespace Flurl.Test.Http
                 .Configure(settings => settings.HttpClientFactory = new Http2ClientFactory());
 
             var response = await cli.Request().GetAsync().ConfigureAwait(false);
-            Assert.AreEqual(response.Version.Major, 2);
+
+            response.Version.Major.Should().Be(2);
+        }
+
+        [Test]
+        public async Task test_http2_fluent_api()
+        {
+            var response = await "https://www.bing.com/"
+                .WithTimeout(TimeSpan.FromSeconds(1))
+                .EnableHttp2()
+                .GetAsync().ConfigureAwait(false);
+
+            response.Version.Major.Should().Be(2);
         }
 
         public class DelegatingHandlerHttpClientFactory : DefaultHttpClientFactory
