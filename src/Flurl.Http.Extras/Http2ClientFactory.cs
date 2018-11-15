@@ -34,5 +34,25 @@ namespace Flurl.Http
             request.CustomHttpClientFactory = new Http2ClientFactory();
             return request;
         }
+
+        /// <summary>
+        /// Fluent API to enable http/2
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public static IFlurlRequest EnableHttp2(this Url url)
+        {
+            return new FlurlRequest(url).EnableHttp2();
+        }
+
+        /// <summary>
+        /// Fluent API to enable http/2
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public static IFlurlRequest EnableHttp2(this string url)
+        {
+            return new Url(url).EnableHttp2();
+        }
     }
 }

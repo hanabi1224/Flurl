@@ -56,5 +56,31 @@ namespace Flurl.Http
             request.CustomHttpClientFactory = new MtlsHttpClientFactory(clientCertificate);
             return request;
         }
+
+        /// <summary>
+        /// Fluent API to specify client certificate for mTLS authentication
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="clientCertificate"></param>
+        /// <returns></returns>
+        public static IFlurlRequest WithMtlsClientCertificate(
+            this Url url,
+            X509Certificate2 clientCertificate)
+        {
+            return new FlurlRequest(url).WithMtlsClientCertificate(clientCertificate);
+        }
+
+        /// <summary>
+        /// Fluent API to specify client certificate for mTLS authentication
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="clientCertificate"></param>
+        /// <returns></returns>
+        public static IFlurlRequest WithMtlsClientCertificate(
+            this string url,
+            X509Certificate2 clientCertificate)
+        {
+            return new FlurlRequest(url).WithMtlsClientCertificate(clientCertificate);
+        }
     }
 }
