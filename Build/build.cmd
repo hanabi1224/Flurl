@@ -34,3 +34,12 @@ exit /b 1
 echo Error! Build Flurl.Http failed.
 exit /b 1
 )
+
+@set project=..\src\Flurl.Http.Extras\
+
+@call dotnet build -c Release %project%
+
+@if ERRORLEVEL 1 (
+echo Error! Build Flurl.Http.Extras failed.
+exit /b 1
+)

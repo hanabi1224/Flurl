@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netcoreapp2.0;netcoreapp2.1;</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net46;net461;$(TargetFrameworks)</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>Flurl.Http.Extras</PackageId>
+    <Version>2.8.0</Version>
+    <Authors>Todd Menier</Authors>
+    <Description>This package provides extra support for Flurl.Http that are not available for all target frameworks. </Description>
+    <PackageProjectUrl>https://flurl.io</PackageProjectUrl>
+    <PackageIconUrl>https://pbs.twimg.com/profile_images/534024476296376320/IuPGZ_bX_400x400.png</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/tmenier/Flurl/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/tmenier/Flurl.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>httpclient rest json http fluent url uri tdd assert async</PackageTags>
+    <PackageReleaseNotes>https://github.com/tmenier/Flurl/releases</PackageReleaseNotes>
+    <IncludeProjectPriFile>false</IncludeProjectPriFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\Flurl.Http.Extras.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl.Http" Version="2.8.0" />
+    <PackageReference Include="System.Net.Http.WinHttpHandler" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Flurl.Http\Flurl.Http.csproj" />
+  </ItemGroup>
+
+</Project>
