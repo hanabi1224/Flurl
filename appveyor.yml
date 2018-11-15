@@ -8,6 +8,10 @@ init:
 pull_requests:
   do_not_increment_build_number: true
 
+build:
+  project: Flurl.sln
+  verbosity: minimal
+
 #build_script:
 #  - cmd: call cmd /C "cd .\build & build.cmd"  
 
