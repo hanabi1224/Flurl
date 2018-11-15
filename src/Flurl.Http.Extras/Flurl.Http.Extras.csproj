@@ -5,7 +5,7 @@
     <TargetFrameworks Condition="'$(OS)' == 'Windows_NT'">net46;net461;$(TargetFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Flurl.Http.Extras</PackageId>
-    <Version>2.4.0</Version>
+    <Version>2.8.0</Version>
     <Authors>Todd Menier</Authors>
     <Description>This package provides extra support for Flurl.Http that are not available for all target frameworks. </Description>
     <PackageProjectUrl>https://flurl.io</PackageProjectUrl>
@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\Flurl.Http.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Flurl.Http.Extras.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
